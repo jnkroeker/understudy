@@ -37,10 +37,10 @@ const widgetNames: WidgetList = {
 type WidgetProps = {
     id: string;
     onRemoveItem: (id: string) => void;
-    component: any
+    Component: React.ComponentType<any>
 }
 
-export const Widget: FunctionComponent<WidgetProps> = ({id, onRemoveItem, component}) => {
+export const Widget: FunctionComponent<WidgetProps> = ({id, onRemoveItem, Component}) => {
     const classes = useStyles();
     return (
         <Card>
@@ -51,7 +51,7 @@ export const Widget: FunctionComponent<WidgetProps> = ({id, onRemoveItem, compon
                 <div className={classes.spacer}/>
             </div>
             <div className={classes.body}>
-                {component}
+                <Component/>
             </div>
         </Card>
     )

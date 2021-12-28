@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-import { AppBar, Toolbar, IconButton } from "material-ui";
+import { AppBar, Toolbar, IconButton } from "@material-ui/core";
 import { Badge, Typography, makeStyles } from "@material-ui/core";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import Brightness4Icon from "@material-ui/icons/Brightness4";

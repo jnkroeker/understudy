@@ -18,7 +18,7 @@ const initialLayouts = {
 }
 
 type ComponentList = {
-    [key: string]: any,
+    [key: string]: React.ComponentType<any>,
 }
 
 const componentList: ComponentList = {
@@ -70,7 +70,7 @@ export const Content: FunctionComponent = () => {
                         <Widget
                             id={key}
                             onRemoveItem={onRemoveItem}
-                            component={componentList[key]}
+                            Component={componentList[key]}
                         />
                     </div>
                 ))}

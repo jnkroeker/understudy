@@ -81,7 +81,7 @@ function App() {
           })}
         >
           <div className={classes.drawerHeader}/>
-          {/* <Content/> */}
+          <Content/>
         </main>
       </div>
     </ThemeProvider>

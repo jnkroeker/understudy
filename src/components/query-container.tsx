@@ -1,4 +1,3 @@
-import 'tachyons';
 import { FunctionComponent, useState } from "react";
 import MapWrapper from "./map/map-wrapper";
 import Timeline from "./timeline";

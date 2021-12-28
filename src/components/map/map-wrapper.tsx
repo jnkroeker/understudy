@@ -1,6 +1,5 @@
 import { FC } from "react";
 import { useState, useEffect, useRef } from "react";
-import 'tachyons';
 
 // openlayers
 import Map from "ol/Map";
