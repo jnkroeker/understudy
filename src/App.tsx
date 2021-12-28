@@ -3,6 +3,8 @@ import { createTheme, makeStyles } from '@material-ui/core/styles';
 import { CssBaseline, ThemeProvider } from '@material-ui/core';
 import clsx from 'clsx';
 import { Header } from './components/Header';
+import { Sidebar } from './components/Sidebar';
+import { Content } from './components/Content';
 import { VideoPlayer } from './components/video-player';
 import { QueryContainer } from './components/query-container'
 import { D3Container } from './components/d3-container';
@@ -79,7 +81,7 @@ function App() {
           })}
         >
           <div className={classes.drawerHeader}/>
-          <Content/>
+          {/* <Content/> */}
         </main>
       </div>
     </ThemeProvider>
