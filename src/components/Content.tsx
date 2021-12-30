@@ -7,13 +7,13 @@ import { D3Container } from './d3-container';
 import { Widget } from './Widget';
 import useWindowDimensions from "../hooks/ui-hooks";
 
-const originalItems = ["a", "b", "c"]
+const originalItems = ["a", "b", "c"] //"a",
 
 const initialLayouts = {
     lg: [
         { w: 7, h: 6, x: 0, y: 0, i: "a", moved: false, static: false },
         { w: 5, h: 6, x: 9, y: 0, i: "b", moved: false, static: false },
-        { w: 12, h: 4, x: 0, y: 6, i: "c", moved: false, static: false }
+        { w: 11, h: 6, x: 0, y: 6, i: "c", moved: false, static: false }
     ]
 }
 

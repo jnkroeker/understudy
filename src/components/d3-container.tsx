@@ -2,8 +2,18 @@ import { FunctionComponent, useEffect, useRef } from "react";
 import * as d3 from 'd3';
 import data from '../data/miserables'
 import { d3Types } from '../types/d3types'
+import { makeStyles } from "@material-ui/core";
+
+const useStyles = makeStyles({
+    map: {
+        width: "100%",
+        height: "50vh",
+        alignItems: "center",
+    },
+  })
 
 export const D3Container: FunctionComponent = ({}) => {
+    const classes = useStyles();
     const nodes = data.nodes;
     const ref = useRef<SVGSVGElement | null>(null)
     const createPie = d3.pie<d3Types.d3Node>().value((d: d3Types.d3Node) => d.group).sort(null)
@@ -18,7 +28,7 @@ export const D3Container: FunctionComponent = ({}) => {
 
         groupWithData.exit().remove()
 
-        const groupWithUpdate = groupWithData.enter().append("g").attr("class", "arc").attr("transform", "translate(" + window.screen.availWidth/2 + ',' + window.screen.availHeight/2 + ')')
+        const groupWithUpdate = groupWithData.enter().append("g").attr("class", "arc").attr("transform", "translate(" + window.screen.availWidth/4 + ',' + window.screen.availHeight/4 + ')')
 
         const path = groupWithUpdate.append("path").merge(groupWithData.select("path.arc"))
 
@@ -36,7 +46,7 @@ export const D3Container: FunctionComponent = ({}) => {
     },[])
 
     return (
-        <svg className="container" width={window.screen.availWidth} height={window.screen.availHeight}>
+        <svg className={classes.map}>
             <g ref={ref}/>
         </svg>
     )
