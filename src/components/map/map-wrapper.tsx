@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { useState, useEffect, useRef } from "react";
-import 'tachyons';
+import { makeStyles } from "@material-ui/core";
 
 // openlayers
 import Map from "ol/Map";
@@ -17,10 +17,20 @@ import Style from "ol/style/Style";
 import CircleStyle from "ol/style/Circle";
 import { Fill, Stroke } from "ol/style";
 
+const useStyles = makeStyles({
+  map: {
+      width: "100%",
+      height: "50vh",
+      alignItems: "center",
+  },
+})
+
 
 type HomeProps = { features: any[] };
 
 const MapWrapper: FC<HomeProps> = ({features}) => {
+  const classes = useStyles();
+
   // set intial state
   const [map, setMap] = useState<Map>();
   const [featuresLayer, setFeaturesLayer] = useState<VectorLayer<any>>();
@@ -64,14 +74,14 @@ const MapWrapper: FC<HomeProps> = ({features}) => {
   useEffect(() => {
     // create and add vector source layer
     const initalFeaturesLayer = new VectorLayer({
-      source: new VectorSource()
-      // source: new VectorSource({
-      //   url: "./14_08_21_Morning_Ride.gpx",
-      //   format: new GPX(),
-      // }),
-      // style: 
+      // source: new VectorSource()
+      source: new VectorSource({
+        url: "/14_08_21_Morning_Ride.gpx",
+        format: new GPX(),
+      }),
+      style: style['LineString'] 
       // function(feature) {
-      //   style['LineString'] //feature.getGeometry().getType()
+      //   if (feature) feature.getGeometry()!.getType() 
       // }
     });
 
@@ -95,7 +105,7 @@ const MapWrapper: FC<HomeProps> = ({features}) => {
       view: new View({
         projection: "EPSG:3857",
         center: webMercator,
-        zoom: 0
+        zoom: 17
       }),
       controls: []
     });
@@ -107,8 +117,8 @@ const MapWrapper: FC<HomeProps> = ({features}) => {
 
   // update map if features prop changes - logic formerly put into componentDidUpdate
   useEffect(() => {
+    // may be null on first render
     if (features.length && featuresLayer) {
-      // may be null on first render
 
       // set features to map
       featuresLayer.setSource(
@@ -126,7 +136,7 @@ const MapWrapper: FC<HomeProps> = ({features}) => {
 
   return (
     <div>
-      <div ref={mapElement} className="vh-50 map-container"></div>
+      <div ref={mapElement} className={classes.map}></div>
     </div>
   );
 };

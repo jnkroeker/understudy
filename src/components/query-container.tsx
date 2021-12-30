@@ -1,12 +1,39 @@
-import 'tachyons';
 import { FunctionComponent, useState } from "react";
 import MapWrapper from "./map/map-wrapper";
 import Timeline from "./timeline";
 import CommentsContainer from "./comments-container";
 import ResultsContainer from "./results-container";
 import SemanticQuery from './query/semantic-query';
+import { makeStyles } from "@material-ui/core";
+
+const useStyles = makeStyles({
+    root: {
+        width: "100%",
+        height: "100%",
+        alignItems: "center",
+    },
+    header: {
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        width: "100%",
+        height: "100%",
+        padding: "0.5rem"
+    },
+    spacer: {
+        flexGrow: 1
+    },
+    body: {
+        padding: "0.5rem",
+        width: "100%",
+        height: "100%",
+        flexGrow: 1
+    }
+})
 
 export const QueryContainer: FunctionComponent = ({}) => {
+
+    const classes = useStyles();
 
     const [setQueryParams, queryParams] = useState<any>({
         temporalFilter: '',
@@ -25,10 +52,21 @@ export const QueryContainer: FunctionComponent = ({}) => {
     const submitQuery = () => {
         // build query string
     }
-    
+    //className="mw-100 vh-100 center bg-blue ph-ns"
     return (
-        <div className="mw-100 vh-100 center bg-blue ph-ns">
-            <div className="cf ph2-ns">
+        <div className={classes.root}> 
+            <div className={classes.header}>
+                <div className={classes.body}>
+                    <MapWrapper features={[]}/>
+                </div>
+                <div>
+                    <Timeline/>
+                </div>
+                <div>
+                    <CommentsContainer/>
+                </div>
+            </div>
+            {/* <div className="cf ph2-ns">
                 <div className="flex flex-column fl w-100 w-70-ns pa2">
                     <div className="outline bg-white">
                         <MapWrapper features={[{id:'123'}]}/>
@@ -48,7 +86,7 @@ export const QueryContainer: FunctionComponent = ({}) => {
                         <ResultsContainer/>
                     </div>
                 </div>
-            </div>
+            </div> */}
         </div>
     )
 }
