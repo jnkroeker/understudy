@@ -8,7 +8,8 @@ const useStyles = makeStyles({
         width: "100%",
         height: "100%",
         display: "flex",
-        flexDirection: "column"
+        flexDirection: "column",
+        padding: "0.5rem"
     },
     header: {
         display: "flex",
@@ -36,21 +37,14 @@ const widgetNames: WidgetList = {
 
 type WidgetProps = {
     id: string;
-    onRemoveItem: (id: string) => void;
     Component: React.ComponentType<any>
 }
 
-export const Widget: FunctionComponent<WidgetProps> = ({id, onRemoveItem, Component}) => {
+export const Widget: FunctionComponent<WidgetProps> = ({id, Component}) => {
     const classes = useStyles();
     return (
         <Card>
-            <div>
-                <Typography>
-                    {widgetNames[id]}
-                </Typography>
-                <div className={classes.spacer}/>
-            </div>
-            <div className={classes.body}>
+            <div className={classes.root}>
                 <Component/>
             </div>
         </Card>

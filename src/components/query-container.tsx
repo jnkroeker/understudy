@@ -59,12 +59,6 @@ export const QueryContainer: FunctionComponent = ({}) => {
                 <div className={classes.body}>
                     <MapWrapper features={[]}/>
                 </div>
-                <div>
-                    <Timeline/>
-                </div>
-                <div>
-                    <CommentsContainer/>
-                </div>
             </div>
             {/* <div className="cf ph2-ns">
                 <div className="flex flex-column fl w-100 w-70-ns pa2">
