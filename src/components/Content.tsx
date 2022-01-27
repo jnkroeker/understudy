@@ -38,15 +38,6 @@ export const Content: FunctionComponent = () => {
     const onLayoutChange = (_: any, allLayouts: any) => {
         setLayouts(allLayouts);
     }
-    // const onLayoutSave = () => {
-    //     saveToLS("layouts", layouts);
-    // }
-    const onRemoveItem = (itemId: string) => {
-        setItems(items.filter((i) => i !== itemId));
-    };
-    const onAddItem = (itemId: string) => {
-        setItems([...items, itemId]);
-    }
 
     return (
         <>

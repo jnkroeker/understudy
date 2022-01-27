@@ -1,0 +1,2 @@
+export const PERFORM_QUERY = "PERFORM_QUERY"
+export const SET_SELECTED  = "SET_SELECTED"
