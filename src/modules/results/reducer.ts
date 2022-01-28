@@ -1,11 +1,14 @@
-import { createReducer } from "@reduxjs/toolkit"
+import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { RootState } from "../../utils/types"
-import { Action, setSelected } from "./actions"
 
 const initialSelectedState: RootState["selectedVideo"] = ""
 
-export const reducer = createReducer(initialSelectedState, (builder) => {
-    builder.addCase(setSelected, (state, action) => {
-        state = action.payload
-    })
+export const resultsSlice = createSlice({
+    name: "resultsIndex",
+    initialState: initialSelectedState,
+    reducers: {
+        setSelected: (state, action: PayloadAction<string>) => {
+            state = action.payload
+        }
+    }
 })
