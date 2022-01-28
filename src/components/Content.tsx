@@ -1,19 +1,19 @@
 import { FunctionComponent, useState } from "react";
 import { Responsive as ResponsiveGridLayout } from "react-grid-layout";
 import { withSize } from "react-sizeme";
-import { VideoPlayer } from './video-player';
 import { QueryContainer } from './query-container'
 import { D3Container } from './d3-container';
 import { Widget } from './Widget';
 import useWindowDimensions from "../hooks/ui-hooks";
+import { DisplayContainer } from "./display-container";
 
-const originalItems = ["a", "b", "c"] //"a",
+const originalItems = ["a", "b"] //,"c"
 
 const initialLayouts = {
     lg: [
-        { w: 7, h: 6, x: 0, y: 0, i: "a", moved: false, static: false },
-        { w: 5, h: 6, x: 9, y: 0, i: "b", moved: false, static: false },
-        { w: 11, h: 6, x: 0, y: 6, i: "c", moved: false, static: false }
+        { w: 7, h: 6, x: 0, y: 0, i: "a", moved: false, static: true },
+        { w: 5, h: 10, x: 9, y: 0, i: "b", moved: false, static: true },
+        { w: 11, h: 3, x: 0, y: 6, i: "c", moved: false, static: true }
     ]
 }
 
@@ -22,7 +22,7 @@ type ComponentList = {
 }
 
 const componentList: ComponentList = {
-    a: VideoPlayer,
+    a: DisplayContainer,
     b: QueryContainer,
     c: D3Container,
 }
@@ -31,7 +31,6 @@ export const Content: FunctionComponent = () => {
     const [items, setItems] = useState(originalItems);
     const [layouts, setLayouts] = useState(
         initialLayouts
-        // getFromLS("layouts") || initialLayouts
     );
 
     const { height, width } = useWindowDimensions();
@@ -39,19 +38,9 @@ export const Content: FunctionComponent = () => {
     const onLayoutChange = (_: any, allLayouts: any) => {
         setLayouts(allLayouts);
     }
-    // const onLayoutSave = () => {
-    //     saveToLS("layouts", layouts);
-    // }
-    const onRemoveItem = (itemId: string) => {
-        setItems(items.filter((i) => i !== itemId));
-    };
-    const onAddItem = (itemId: string) => {
-        setItems([...items, itemId]);
-    }
 
     return (
         <>
-            {/* <TopBar/> */}
             <ResponsiveGridLayout
                 className="layout"
                 layouts={layouts}
@@ -65,11 +54,10 @@ export const Content: FunctionComponent = () => {
                     <div
                         key={key}
                         className="widget"
-                        data-grid={{ w: 3, h: 2, x: 0, y: Infinity }}
+                        data-grid={{ w: 3, h: 2, x: 0, y: 0 }}
                     >
                         <Widget
                             id={key}
-                            onRemoveItem={onRemoveItem}
                             Component={componentList[key]}
                         />
                     </div>

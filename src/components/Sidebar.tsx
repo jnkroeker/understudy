@@ -37,7 +37,13 @@ export const Sidebar: FunctionComponent<SidebarProps> = ({ handleDrawerClose, op
     const classes = useStyles();
 
     return (
-        <Drawer>
+        <Drawer 
+            className={classes.drawer} 
+            variant="persistent" 
+            anchor="left" 
+            open={open} 
+            classes={{paper: classes.drawerPaper}}
+        >
             <div className={classes.drawerHeader}>
                 <IconButton onClick={handleDrawerClose}>
                     <ChevronLeftIcon/>

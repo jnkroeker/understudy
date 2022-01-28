@@ -1,10 +1,10 @@
 import { FunctionComponent, useState } from "react";
-import MapWrapper from "./map/map-wrapper";
-import Timeline from "./timeline";
-import CommentsContainer from "./comments-container";
+import Divider from "@material-ui/core/Divider";
 import ResultsContainer from "./results-container";
 import SemanticQuery from './query/semantic-query';
 import { makeStyles } from "@material-ui/core";
+import { useSelector, useDispatch } from "react-redux";
+import { PERFORM_QUERY } from "../actions";
 
 const useStyles = makeStyles({
     root: {
@@ -34,6 +34,7 @@ const useStyles = makeStyles({
 export const QueryContainer: FunctionComponent = ({}) => {
 
     const classes = useStyles();
+    const dispatch = useDispatch();
 
     const [setQueryParams, queryParams] = useState<any>({
         temporalFilter: '',
@@ -51,42 +52,20 @@ export const QueryContainer: FunctionComponent = ({}) => {
 
     const submitQuery = () => {
         // build query string
+
+        //dispatch actions
+        dispatch(PERFORM_QUERY)
     }
-    //className="mw-100 vh-100 center bg-blue ph-ns"
+
     return (
         <div className={classes.root}> 
             <div className={classes.header}>
                 <div className={classes.body}>
-                    <MapWrapper features={[]}/>
-                </div>
-                <div>
-                    <Timeline/>
-                </div>
-                <div>
-                    <CommentsContainer/>
+                    <SemanticQuery submitQuery={submitQuery} addTag={handleAddTag}/>
+                    <Divider/>
+                    <ResultsContainer/>
                 </div>
             </div>
-            {/* <div className="cf ph2-ns">
-                <div className="flex flex-column fl w-100 w-70-ns pa2">
-                    <div className="outline bg-white">
-                        <MapWrapper features={[{id:'123'}]}/>
-                    </div>
-                    <div className="outline bg-white pv4 mt3">
-                        <Timeline/>
-                    </div>
-                    <div className="outline bg-white pv4 mt3">
-                        <CommentsContainer/>
-                    </div>
-                </div>
-                <div className="flex flex-column fl w-100 w-30-ns pa2">
-                    <div className="outline bg-white pv4">
-                        <SemanticQuery submitQuery={submitQuery} addTag={handleAddTag}/>
-                    </div>
-                    <div className="outline bg-white pv4 mt3">
-                        <ResultsContainer/>
-                    </div>
-                </div>
-            </div> */}
         </div>
     )
 }
